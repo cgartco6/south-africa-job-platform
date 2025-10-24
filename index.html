@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobConnect SA - AI-Powered Career Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" data-aos="fade-up">
+                    <span class="gradient-text">LAND YOUR DREAM JOB</span><br>
+                    <span class="hero-subtitle">AI-Powered Career Revolution in South Africa</span>
+                </h1>
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                    Join 5,000+ South Africans who found their dream careers using our cutting-edge AI technology. 
+                    Get hired faster with personalized job matching, AI-optimized CVs, and instant applications.
+                </p>
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat">
+                        <span class="stat-number" data-count="5000">0</span>
+                        <span class="stat-label">Jobs Found</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="98">0</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">Avg. Hours to Hire</span>
+                    </div>
+                </div>
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
+                    <button class="btn btn-primary btn-large" onclick="showRegistrationModal()">
+                        <i class="fas fa-rocket"></i>
+                        START FREE TRIAL
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="scrollToSection('features')">
+                        <i class="fas fa-play-circle"></i>
+                        WATCH DEMO
+                    </button>
+                </div>
+                <div class="urgency-banner" data-aos="fade-up" data-aos-delay="800">
+                    <i class="fas fa-bolt"></i>
+                    <span>LIMITED TIME: Free AI CV analysis for first 100 registrations!</span>
+                </div>
+            </div>
+            <div class="hero-visual" data-aos="fade-left">
+                <div class="floating-cards">
+                    <div class="card job-card floating-1">
+                        <div class="card-badge">HOT</div>
+                        <h4>Senior Developer</h4>
+                        <p>R85,000/month</p>
+                        <span class="location">Cape Town</span>
+                    </div>
+                    <div class="card job-card floating-2">
+                        <div class="card-badge success">URGENT</div>
+                        <h4>Data Scientist</h4>
+                        <p>R95,000/month</p>
+                        <span class="location">Johannesburg</span>
+                    </div>
+                    <div class="card job-card floating-3">
+                        <h4>Marketing Manager</h4>
+                        <p>R65,000/month</p>
+                        <span class="location">Durban</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                Why <span class="gradient-text">5,000+</span> Job Seekers Choose Us
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Job Matching</h3>
+                    <p>Our advanced AI analyzes your skills and preferences to match you with perfect job opportunities in seconds.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Smart skill matching</li>
+                        <li><i class="fas fa-check"></i> Location-based opportunities</li>
+                        <li><i class="fas fa-check"></i> Salary optimization</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>CV Enhancement AI</h3>
+                    <p>Transform your CV into an interview magnet with our AI that optimizes for both humans and tracking systems.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> ATS optimization</li>
+                        <li><i class="fas fa-check"></i> Achievement highlighting</li>
+                        <li><i class="fas fa-check"></i> Keyword optimization</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Applications</h3>
+                    <p>Apply to multiple jobs with one click. Our system auto-fills forms and generates personalized cover letters.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> One-click applications</li>
+                        <li><i class="fas fa-check"></i> Auto-form filling</li>
+                        <li><i class="fas fa-check"></i> Smart cover letters</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Search Section -->
+    <section class="job-search" id="jobs">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                Find Your <span class="gradient-text">Dream Job</span> in South Africa
+            </h2>
+            
+            <div class="search-filters" data-aos="fade-up">
+                <div class="filter-group">
+                    <select id="provinceSelect" class="filter-select">
+                        <option value="">All Provinces</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="kzn">KwaZulu-Natal</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="free-state">Free State</option>
+                        <option value="mpumalanga">Mpumalanga</option>
+                        <option value="limpopo">Limpopo</option>
+                        <option value="north-west">North West</option>
+                        <option value="northern-cape">Northern Cape</option>
+                    </select>
+                    
+                    <select id="citySelect" class="filter-select">
+                        <option value="">All Cities</option>
+                    </select>
+                    
+                    <select id="industrySelect" class="filter-select">
+                        <option value="">All Industries</option>
+                        <option value="it">Information Technology</option>
+                        <option value="finance">Finance & Banking</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                    
+                    <input type="text" id="salaryRange" class="filter-select" placeholder="Min Salary (R)">
+                    
+                    <button class="btn btn-primary" onclick="searchJobs()">
+                        <i class="fas fa-search"></i>
+                        FIND JOBS
+                    </button>
+                </div>
+            </div>
+
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Jobs will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                Start Your <span class="gradient-text">Career Transformation</span>
+            </h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-header">
+                        <h3>Basic Access</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Job Search Access</li>
+                        <li><i class="fas fa-check"></i> Basic CV Upload</li>
+                        <li><i class="fas fa-times"></i> AI CV Optimization</li>
+                        <li><i class="fas fa-times"></i> Instant Applications</li>
+                        <li><i class="fas fa-times"></i> Priority Support</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="selectPlan('basic')">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="400">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="pricing-header">
+                        <h3>AI Career Pro</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">299</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Basic</li>
+                        <li><i class="fas fa-check"></i> AI CV Optimization</li>
+                        <li><i class="fas fa-check"></i> Instant Applications</li>
+                        <li><i class="fas fa-check"></i> Cover Letter Generation</li>
+                        <li><i class="fas fa-check"></i> Priority Job Matching</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="selectPlan('pro')">
+                        START FREE TRIAL
+                    </button>
+                </div>
+
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">499</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Dedicated Career Coach</li>
+                        <li><i class="fas fa-check"></i> Interview Preparation</li>
+                        <li><i class="fas fa-check"></i> Salary Negotiation</li>
+                        <li><i class="fas fa-check"></i> VIP Support</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="selectPlan('enterprise')">
+                        CONTACT SALES
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Modals -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registrationModal')">&times;</span>
+            <h2>Start Your Career Journey</h2>
+            <form id="registrationForm" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select id="province" required>
+                        <option value="">Select Province</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="kzn">KwaZulu-Natal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="plan" required>
+                        <option value="">Select Plan</option>
+                        <option value="basic">Basic - R99/month</option>
+                        <option value="pro">AI Career Pro - R299/month</option>
+                        <option value="enterprise">Enterprise - R499/month</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-lock"></i>
+                    START FREE TRIAL
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/ai-interactions.js"></script>
+    <script src="scripts/payment.js"></script>
+</body>
+</html>

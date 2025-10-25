@@ -3,299 +3,1540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobConnect SA - AI-Powered Career Platform</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="stylesheet" href="styles/animations.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>JobApp Automator - AI-Powered Job Search for South Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-light: #93c5fd;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #0d9668;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* How It Works */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background: var(--gray-light);
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            text-align: center;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-header {
+            padding: 30px 20px;
+            background: var(--light);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .pricing-period {
+            color: var(--gray);
+        }
+
+        .pricing-features {
+            padding: 20px;
+            list-style: none;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-footer {
+            padding: 20px;
+        }
+
+        /* AI Demo Section */
+        .ai-demo {
+            background: var(--light);
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .demo-input, .demo-output {
+            height: 300px;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+        }
+
+        .demo-input {
+            border: 2px dashed var(--gray-light);
+        }
+
+        .demo-output {
+            border: 2px solid var(--primary-light);
+        }
+
+        .demo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Regions Section */
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .region-card {
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .region-flag {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Payment Section */
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--secondary);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+        }
+
+        .toast.success .toast-icon {
+            color: var(--secondary);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--danger);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <div id="header"></div>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span>JobApp Automator</span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#regions">Regions</a>
+                </div>
+                
+                <div class="nav-buttons">
+                    <a href="#login" class="btn btn-secondary">Login</a>
+                    <a href="#signup" class="btn btn-primary">Get Started</a>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title" data-aos="fade-up">
-                    <span class="gradient-text">LAND YOUR DREAM JOB</span><br>
-                    <span class="hero-subtitle">AI-Powered Career Revolution in South Africa</span>
-                </h1>
-                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                    Join 5,000+ South Africans who found their dream careers using our cutting-edge AI technology. 
-                    Get hired faster with personalized job matching, AI-optimized CVs, and instant applications.
-                </p>
-                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat">
-                        <span class="stat-number" data-count="5000">0</span>
-                        <span class="stat-label">Jobs Found</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="98">0</span>
-                        <span class="stat-label">Success Rate</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="24">0</span>
-                        <span class="stat-label">Avg. Hours to Hire</span>
-                    </div>
-                </div>
-                <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
-                    <button class="btn btn-primary btn-large" onclick="showRegistrationModal()">
-                        <i class="fas fa-rocket"></i>
-                        START FREE TRIAL
-                    </button>
-                    <button class="btn btn-secondary btn-large" onclick="scrollToSection('features')">
-                        <i class="fas fa-play-circle"></i>
-                        WATCH DEMO
-                    </button>
-                </div>
-                <div class="urgency-banner" data-aos="fade-up" data-aos-delay="800">
-                    <i class="fas fa-bolt"></i>
-                    <span>LIMITED TIME: Free AI CV analysis for first 100 registrations!</span>
-                </div>
-            </div>
-            <div class="hero-visual" data-aos="fade-left">
-                <div class="floating-cards">
-                    <div class="card job-card floating-1">
-                        <div class="card-badge">HOT</div>
-                        <h4>Senior Developer</h4>
-                        <p>R85,000/month</p>
-                        <span class="location">Cape Town</span>
-                    </div>
-                    <div class="card job-card floating-2">
-                        <div class="card-badge success">URGENT</div>
-                        <h4>Data Scientist</h4>
-                        <p>R95,000/month</p>
-                        <span class="location">Johannesburg</span>
-                    </div>
-                    <div class="card job-card floating-3">
-                        <h4>Marketing Manager</h4>
-                        <p>R65,000/month</p>
-                        <span class="location">Durban</span>
-                    </div>
-                </div>
+        <div class="container">
+            <h1>Automate Your Job Search in <span style="color: #fbbf24;">South Africa</span></h1>
+            <p>Let our AI agents rewrite your resume, generate cover letters, and apply to hundreds of jobs across South Africa. All for one flat fee of R499.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary btn-lg">Get Started - R499</a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="section" id="features">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                Why <span class="gradient-text">5,000+</span> Job Seekers Choose Us
-            </h2>
+            <div class="section-title">
+                <h2>Powerful AI Features</h2>
+                <p>Our AI-powered platform handles every aspect of your job search</p>
+            </div>
+            
             <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI-Powered Job Matching</h3>
-                    <p>Our advanced AI analyzes your skills and preferences to match you with perfect job opportunities in seconds.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Smart skill matching</li>
-                        <li><i class="fas fa-check"></i> Location-based opportunities</li>
-                        <li><i class="fas fa-check"></i> Salary optimization</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
-                    <h3>CV Enhancement AI</h3>
-                    <p>Transform your CV into an interview magnet with our AI that optimizes for both humans and tracking systems.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> ATS optimization</li>
-                        <li><i class="fas fa-check"></i> Achievement highlighting</li>
-                        <li><i class="fas fa-check"></i> Keyword optimization</li>
-                    </ul>
+                    <h3>AI Resume Enhancement</h3>
+                    <p>Upload your resume and our AI will rewrite and optimize it for South African employers and ATS systems.</p>
                 </div>
-
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                
+                <div class="card feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+                        <i class="fas fa-envelope-open-text"></i>
                     </div>
-                    <h3>Instant Applications</h3>
-                    <p>Apply to multiple jobs with one click. Our system auto-fills forms and generates personalized cover letters.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> One-click applications</li>
-                        <li><i class="fas fa-check"></i> Auto-form filling</li>
-                        <li><i class="fas fa-check"></i> Smart cover letters</li>
-                    </ul>
+                    <h3>Smart Cover Letters</h3>
+                    <p>Generate personalized cover letters tailored to each job application with our advanced AI.</p>
+                </div>
+                
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Nationwide Job Search</h3>
+                    <p>We scan job portals across all 9 provinces and major towns in South Africa.</p>
+                </div>
+                
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3>Automated Applications</h3>
+                    <p>We handle the entire application process, saving you time and effort.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Job Search Section -->
-    <section class="job-search" id="jobs">
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                Find Your <span class="gradient-text">Dream Job</span> in South Africa
-            </h2>
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Four simple steps to land your dream job in South Africa</p>
+            </div>
             
-            <div class="search-filters" data-aos="fade-up">
-                <div class="filter-group">
-                    <select id="provinceSelect" class="filter-select">
-                        <option value="">All Provinces</option>
-                        <option value="gauteng">Gauteng</option>
-                        <option value="western-cape">Western Cape</option>
-                        <option value="kzn">KwaZulu-Natal</option>
-                        <option value="eastern-cape">Eastern Cape</option>
-                        <option value="free-state">Free State</option>
-                        <option value="mpumalanga">Mpumalanga</option>
-                        <option value="limpopo">Limpopo</option>
-                        <option value="north-west">North West</option>
-                        <option value="northern-cape">Northern Cape</option>
-                    </select>
-                    
-                    <select id="citySelect" class="filter-select">
-                        <option value="">All Cities</option>
-                    </select>
-                    
-                    <select id="industrySelect" class="filter-select">
-                        <option value="">All Industries</option>
-                        <option value="it">Information Technology</option>
-                        <option value="finance">Finance & Banking</option>
-                        <option value="healthcare">Healthcare</option>
-                        <option value="engineering">Engineering</option>
-                        <option value="marketing">Marketing</option>
-                    </select>
-                    
-                    <input type="text" id="salaryRange" class="filter-select" placeholder="Min Salary (R)">
-                    
-                    <button class="btn btn-primary" onclick="searchJobs()">
-                        <i class="fas fa-search"></i>
-                        FIND JOBS
-                    </button>
+            <div class="steps">
+                <div class="card step">
+                    <div class="step-number">1</div>
+                    <h3>Upload & Pay</h3>
+                    <p>Upload your resume and make a one-time payment of R499 for full access to our platform.</p>
+                </div>
+                
+                <div class="card step">
+                    <div class="step-number">2</div>
+                    <h3>AI Enhancement</h3>
+                    <p>Our AI rewrites and optimizes your resume for South African employers and ATS systems.</p>
+                </div>
+                
+                <div class="card step">
+                    <div class="step-number">3</div>
+                    <h3>Nationwide Search</h3>
+                    <p>We scan job portals across all regions and towns in South Africa for matching positions.</p>
+                </div>
+                
+                <div class="card step">
+                    <div class="step-number">4</div>
+                    <h3>Automated Applications</h3>
+                    <p>We handle the application process with personalized cover letters for each job.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="jobs-grid" id="jobsGrid">
-                <!-- Jobs will be loaded here by JavaScript -->
+    <!-- AI Demo Section -->
+    <section class="section ai-demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>See Our AI in Action</h2>
+                <p>Try our resume enhancement tool with a sample text</p>
+            </div>
+            
+            <div class="demo-container">
+                <div>
+                    <h3>Original Resume</h3>
+                    <div class="demo-input" id="original-resume">
+                        <p><strong>John Doe</strong><br>
+                        Email: john.doe@example.com | Phone: 012 345 6789</p>
+                        
+                        <p><strong>Professional Summary</strong><br>
+                        Hard-working professional with experience in customer service and administration. Looking for new opportunities.</p>
+                        
+                        <p><strong>Work Experience</strong><br>
+                        <strong>Customer Service Representative</strong><br>
+                        ABC Company, Johannesburg (2019-2022)<br>
+                        - Answered customer queries<br>
+                        - Processed orders<br>
+                        - Handled complaints</p>
+                        
+                        <p><strong>Education</strong><br>
+                        Matric - XYZ High School (2018)</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>AI-Enhanced Resume</h3>
+                    <div class="demo-output" id="enhanced-resume">
+                        <p>Click the "Enhance with AI" button to see the magic!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-actions">
+                <button class="btn btn-primary" id="enhance-btn">
+                    <i class="fas fa-robot"></i> Enhance with AI
+                </button>
+                <button class="btn btn-secondary" id="reset-btn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
+    <section class="section" id="pricing">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                Start Your <span class="gradient-text">Career Transformation</span>
-            </h2>
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>One-time payment for unlimited job applications across South Africa</p>
+            </div>
             
             <div class="pricing-grid">
-                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pricing-card featured">
                     <div class="pricing-header">
-                        <h3>Basic Access</h3>
-                        <div class="price">
-                            <span class="currency">R</span>
-                            <span class="amount">99</span>
-                            <span class="period">/month</span>
-                        </div>
+                        <h3>Job Application Package</h3>
+                        <div class="pricing-price">R499</div>
+                        <div class="pricing-period">One-time payment</div>
                     </div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Job Search Access</li>
-                        <li><i class="fas fa-check"></i> Basic CV Upload</li>
-                        <li><i class="fas fa-times"></i> AI CV Optimization</li>
-                        <li><i class="fas fa-times"></i> Instant Applications</li>
-                        <li><i class="fas fa-times"></i> Priority Support</li>
+                    
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check text-success"></i> AI Resume Enhancement</li>
+                        <li><i class="fas fa-check text-success"></i> Personalized Cover Letters</li>
+                        <li><i class="fas fa-check text-success"></i> Nationwide Job Search</li>
+                        <li><i class="fas fa-check text-success"></i> Automated Applications</li>
+                        <li><i class="fas fa-check text-success"></i> All South African Regions</li>
+                        <li><i class="fas fa-check text-success"></i> 30-Day Support</li>
                     </ul>
-                    <button class="btn btn-outline" onclick="selectPlan('basic')">
-                        GET STARTED
-                    </button>
+                    
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary btn-lg" id="purchase-btn">Get Started Now</button>
+                    </div>
                 </div>
-
-                <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="400">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <div class="pricing-header">
-                        <h3>AI Career Pro</h3>
-                        <div class="price">
-                            <span class="currency">R</span>
-                            <span class="amount">299</span>
-                            <span class="period">/month</span>
-                        </div>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="payfast">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
                     </div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Everything in Basic</li>
-                        <li><i class="fas fa-check"></i> AI CV Optimization</li>
-                        <li><i class="fas fa-check"></i> Instant Applications</li>
-                        <li><i class="fas fa-check"></i> Cover Letter Generation</li>
-                        <li><i class="fas fa-check"></i> Priority Job Matching</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('pro')">
-                        START FREE TRIAL
-                    </button>
+                    <div>
+                        <h4>PayFast</h4>
+                        <p>Credit Card, Debit Card, Instant EFT</p>
+                    </div>
                 </div>
+                
+                <div class="payment-method" data-method="eft">
+                    <div class="payment-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div>
+                        <h4>Direct EFT</h4>
+                        <p>Bank Transfer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="pricing-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <div class="price">
-                            <span class="currency">R</span>
-                            <span class="amount">499</span>
-                            <span class="period">/month</span>
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from South Africans who found their dream jobs with our help</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="card testimonial-card">
+                    <div class="testimonial-text">
+                        "I was struggling to find a job for 6 months. After using JobApp Automator, I had 3 interviews in the first week and landed a great position in Cape Town. Worth every cent!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TS</div>
+                        <div class="author-info">
+                            <h4>Thabo Sithole</h4>
+                            <p>Marketing Manager, Cape Town</p>
                         </div>
                     </div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Everything in Pro</li>
-                        <li><i class="fas fa-check"></i> Dedicated Career Coach</li>
-                        <li><i class="fas fa-check"></i> Interview Preparation</li>
-                        <li><i class="fas fa-check"></i> Salary Negotiation</li>
-                        <li><i class="fas fa-check"></i> VIP Support</li>
-                    </ul>
-                    <button class="btn btn-outline" onclick="selectPlan('enterprise')">
-                        CONTACT SALES
-                    </button>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-text">
+                        "The AI resume enhancement was incredible! It transformed my basic CV into a professional document that got me noticed. I applied to jobs across Gauteng and received multiple offers."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NM</div>
+                        <div class="author-info">
+                            <h4>Nomsa Mbeki</h4>
+                            <p>IT Specialist, Johannesburg</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-text">
+                        "As a recent graduate with no work experience, I was worried about my job prospects. JobApp Automator helped me highlight my skills effectively, and I now have a great job in Durban."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PM</div>
+                        <div class="author-info">
+                            <h4>Peter Mokoena</h4>
+                            <p>Junior Developer, Durban</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section class="section" id="regions">
+        <div class="container">
+            <div class="section-title">
+                <h2>We Cover All of South Africa</h2>
+                <p>From Cape Town to Johannesburg, and everywhere in between</p>
+            </div>
+            
+            <div class="regions-grid">
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Gauteng</h3>
+                    <p>Johannesburg, Pretoria, Sandton</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Western Cape</h3>
+                    <p>Cape Town, Stellenbosch, George</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <h3>KwaZulu-Natal</h3>
+                    <p>Durban, Pietermaritzburg, Ballito</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Eastern Cape</h3>
+                    <p>Port Elizabeth, East London</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Free State</h3>
+                    <p>Bloemfontein, Welkom</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Limpopo</h3>
+                    <p>Polokwane, Tzaneen</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Mpumalanga</h3>
+                    <p>Nelspruit, Witbank</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>North West</h3>
+                    <p>Rustenburg, Potchefstroom</p>
+                </div>
+                
+                <div class="card region-card">
+                    <div class="region-flag">
+                        <i class="fas fa-desert"></i>
+                    </div>
+                    <h3>Northern Cape</h3>
+                    <p>Kimberley, Upington</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <div id="footer"></div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span>JobApp Automator</span>
+                    </div>
+                    <p>AI-powered job application automation for South Africa. Let us handle your job search while you focus on preparing for interviews.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#regions">Regions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@jobappautomator.co.za</li>
+                        <li><i class="fas fa-phone"></i> 012 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 JobApp Automator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Modals -->
-    <div id="registrationModal" class="modal">
+    <!-- Payment Modal -->
+    <div class="modal" id="payment-modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('registrationModal')">&times;</span>
-            <h2>Start Your Career Journey</h2>
-            <form id="registrationForm" onsubmit="handleRegistration(event)">
+            <div class="modal-header">
+                <h3>Complete Your Purchase</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <form id="payment-form">
                 <div class="form-group">
-                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <label class="form-label" for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" required>
                 </div>
+                
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Email Address" required>
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" required>
                 </div>
+                
                 <div class="form-group">
-                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" required>
                 </div>
+                
                 <div class="form-group">
-                    <select id="province" required>
-                        <option value="">Select Province</option>
-                        <option value="gauteng">Gauteng</option>
-                        <option value="western-cape">Western Cape</option>
-                        <option value="kzn">KwaZulu-Natal</option>
-                    </select>
+                    <label class="form-label">Payment Method</label>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="payfast">
+                            <div class="payment-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div>
+                                <h4>PayFast</h4>
+                                <p>Credit Card, Debit Card, Instant EFT</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method" data-method="eft">
+                            <div class="payment-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <h4>Direct EFT</h4>
+                                <p>Bank Transfer</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="form-group" id="eft-details" style="display: none;">
+                    <div class="card">
+                        <h4>EFT Payment Instructions</h4>
+                        <p><strong>Bank:</strong> Standard Bank</p>
+                        <p><strong>Account Name:</strong> JobApp Automator (Pty) Ltd</p>
+                        <p><strong>Account Number:</strong> 000 334 789 123</p>
+                        <p><strong>Reference:</strong> Your Name + JOBAPP</p>
+                        <p><strong>Amount:</strong> R499.00</p>
+                    </div>
+                </div>
+                
                 <div class="form-group">
-                    <select id="plan" required>
-                        <option value="">Select Plan</option>
-                        <option value="basic">Basic - R99/month</option>
-                        <option value="pro">AI Career Pro - R299/month</option>
-                        <option value="enterprise">Enterprise - R499/month</option>
-                    </select>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <span id="submit-text">Pay R499.00</span>
+                        <span id="submit-loading" class="hidden">
+                            <span class="loading"></span> Processing...
+                        </span>
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary btn-large">
-                    <i class="fas fa-lock"></i>
-                    START FREE TRIAL
-                </button>
             </form>
         </div>
     </div>
 
-    <script src="scripts/main.js"></script>
-    <script src="scripts/ai-interactions.js"></script>
-    <script src="scripts/payment.js"></script>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-content">
+            <div class="toast-title">Success!</div>
+            <div class="toast-message">Your payment has been processed successfully.</div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navButtons = document.querySelector('.nav-buttons');
+        const enhanceBtn = document.getElementById('enhance-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const originalResume = document.getElementById('original-resume');
+        const enhancedResume = document.getElementById('enhanced-resume');
+        const purchaseBtn = document.getElementById('purchase-btn');
+        const paymentModal = document.getElementById('payment-modal');
+        const modalClose = document.querySelector('.modal-close');
+        const paymentForm = document.getElementById('payment-form');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const eftDetails = document.getElementById('eft-details');
+        const submitText = document.getElementById('submit-text');
+        const submitLoading = document.getElementById('submit-loading');
+        const toast = document.getElementById('toast');
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navButtons.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.display = 'flex';
+                navButtons.style.display = 'flex';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // AI Resume Enhancement
+        enhanceBtn.addEventListener('click', () => {
+            const originalText = originalResume.innerHTML;
+            
+            // Show loading state
+            enhancedResume.innerHTML = '<p><span class="loading"></span> AI is enhancing your resume...</p>';
+            enhanceBtn.disabled = true;
+            
+            // Simulate AI processing
+            setTimeout(() => {
+                // This is a simplified simulation - in a real app, this would call an API
+                const enhancedText = `
+                    <p><strong>JOHN DOE</strong><br>
+                    Email: john.doe@example.com | Phone: 012 345 6789 | LinkedIn: linkedin.com/in/johndoe</p>
+                    
+                    <p><strong>PROFESSIONAL SUMMARY</strong><br>
+                    Results-driven Customer Service Professional with 3+ years of experience delivering exceptional customer support and driving customer satisfaction. Proven ability to resolve complex issues, process orders efficiently, and enhance customer retention. Seeking to leverage expertise in a challenging Customer Service Manager role.</p>
+                    
+                    <p><strong>PROFESSIONAL EXPERIENCE</strong><br>
+                    <strong>Customer Service Representative</strong><br>
+                    ABC Company, Johannesburg | 2019 - 2022</p>
+                    <ul>
+                        <li>Managed an average of 50+ customer inquiries daily, achieving a 95% satisfaction rate</li>
+                        <li>Implemented new order processing system that reduced processing time by 30%</li>
+                        <li>Resolved 90% of customer complaints on first contact, improving customer retention</li>
+                        <li>Trained 5 new team members on customer service protocols and systems</li>
+                    </ul>
+                    
+                    <p><strong>EDUCATION</strong><br>
+                    <strong>National Senior Certificate</strong><br>
+                    XYZ High School | 2018<br>
+                    • Achieved 5 Distinctions including English and Mathematics</p>
+                    
+                    <p><strong>SKILLS</strong><br>
+                    Customer Relationship Management • Problem Solving • Order Processing • Team Training • Communication Skills</p>
+                `;
+                
+                enhancedResume.innerHTML = enhancedText;
+                enhanceBtn.disabled = false;
+                
+                // Show success message
+                showToast('Resume enhanced successfully!', 'success');
+            }, 3000);
+        });
+
+        // Reset Demo
+        resetBtn.addEventListener('click', () => {
+            enhancedResume.innerHTML = '<p>Click the "Enhance with AI" button to see the magic!</p>';
+        });
+
+        // Payment Method Selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                // Remove selected class from all methods
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                
+                // Add selected class to clicked method
+                method.classList.add('selected');
+                
+                // Show/hide EFT details
+                if (method.dataset.method === 'eft') {
+                    eftDetails.style.display = 'block';
+                    submitText.textContent = 'Continue with EFT';
+                } else {
+                    eftDetails.style.display = 'none';
+                    submitText.textContent = 'Pay R499.00';
+                }
+            });
+        });
+
+        // Open Payment Modal
+        purchaseBtn.addEventListener('click', () => {
+            paymentModal.classList.add('active');
+        });
+
+        // Close Payment Modal
+        modalClose.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.classList.remove('active');
+            }
+        });
+
+        // Handle Payment Form Submission
+        paymentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitText.classList.add('hidden');
+            submitLoading.classList.remove('hidden');
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Hide loading state
+                submitText.classList.remove('hidden');
+                submitLoading.classList.add('hidden');
+                
+                // Close modal
+                paymentModal.classList.remove('active');
+                
+                // Show success message
+                showToast('Payment successful! Your account has been activated.', 'success');
+                
+                // Reset form
+                paymentForm.reset();
+            }, 2000);
+        });
+
+        // Show Toast Notification
+        function showToast(message, type = 'success') {
+            const toastTitle = toast.querySelector('.toast-title');
+            const toastMessage = toast.querySelector('.toast-message');
+            const toastIcon = toast.querySelector('.toast-icon i');
+            
+            // Set content
+            toastMessage.textContent = message;
+            
+            // Set type
+            toast.className = 'toast';
+            toast.classList.add(type);
+            
+            // Set icon based on type
+            if (type === 'success') {
+                toastTitle.textContent = 'Success!';
+                toastIcon.className = 'fas fa-check-circle';
+            } else {
+                toastTitle.textContent = 'Error!';
+                toastIcon.className = 'fas fa-exclamation-circle';
+            }
+            
+            // Show toast
+            toast.classList.add('show');
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                        navLinks.style.display = 'none';
+                        navButtons.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            } else {
+                header.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)';
+            }
+        });
+    </script>
 </body>
 </html>

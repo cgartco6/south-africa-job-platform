@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobApp Automator | Complete SA Coverage - All Cities & Towns</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --navy: #0a1931;
+            --dark-blue: #1a3a5f;
+            --blue: #2d5d8c;
+            --light-blue: #4a90e2;
+            --dark-gray: #2c3e50;
+            --gray: #7f8c8d;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --black: #1a1a1a;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, var(--light-blue), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light-blue);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--light-gray);
+        }
+
+        a {
+            color: var(--light-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--white);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--light-blue), var(--blue));
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-blue);
+            border: 2px solid var(--light-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-blue);
+            color: var(--navy);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-danger {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-lg {
+            padding: 18px 36px;
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--navy);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--light-gray);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(rgba(10, 25, 49, 0.9), rgba(10, 25, 49, 0.9)),
+                url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(231, 76, 60, 0.15) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--light-gray);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--light-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--light-gray);
+        }
+
+        /* Enhanced Regions Section */
+        .province-accordion {
+            margin-top: 30px;
+        }
+        
+        .province-card {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .province-header {
+            padding: 20px;
+            background: var(--navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .province-header:hover {
+            background: rgba(74, 144, 226, 0.1);
+        }
+        
+        .province-header h3 {
+            margin: 0;
+            color: var(--light-blue);
+        }
+        
+        .province-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .province-card.active .province-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .province-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .province-card.active .province-content {
+            padding: 20px;
+            max-height: 5000px;
+        }
+        
+        .towns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .town-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .town-item:hover {
+            background: rgba(74, 144, 226, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .town-icon {
+            color: var(--light-blue);
+        }
+        
+        .business-size {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        
+        .large-business {
+            background: var(--success);
+            color: white;
+        }
+        
+        .medium-business {
+            background: var(--warning);
+            color: var(--navy);
+        }
+        
+        .small-business {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--dark-blue);
+            color: var(--white);
+            font-size: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--light-blue);
+        }
+        
+        .town-count {
+            background: var(--light-blue);
+            color: var(--navy);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .coverage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .coverage-stat {
+            text-align: center;
+            padding: 20px;
+            background: var(--dark-blue);
+            border-radius: 12px;
+        }
+        
+        .coverage-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--light-blue);
+            display: block;
+        }
+        
+        .coverage-label {
+            color: var(--light-gray);
+            font-size: 1rem;
+        }
+
+        /* Payment Options */
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 200px;
+            text-align: center;
+        }
+        
+        .payment-option.selected {
+            border-color: var(--light-blue);
+            background: rgba(74, 144, 226, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--light-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .chatbot {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+
+            .towns-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .text-success {
+            color: var(--success);
+        }
+
+        .text-warning {
+            color: var(--warning);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span>JobApp Automator</span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#regions">All Locations</a>
+                    <a href="#testimonials">Success Stories</a>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="login-btn">Admin Login</button>
+                    <button class="btn btn-primary" id="cart-toggle">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI-Powered Job Search Automation</h1>
+                <p>Let our advanced AI agents rewrite your resume, generate personalized cover letters, and apply to hundreds of jobs across ALL of South Africa. All for one flat fee of R499.</p>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn btn-primary btn-lg">Get Started Now</a>
+                    <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="subscriber-count">5,243</span>
+                        <span class="stat-label">Happy Subscribers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="jobs-found">15,892</span>
+                        <span class="stat-label">Jobs Found</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="success-rate">96%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Regions Section -->
+    <section class="section" id="regions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Complete South African Coverage</h2>
+                <p>We cover every city, town, and village across all 9 provinces - over 1,000 locations!</p>
+            </div>
+            
+            <div class="coverage-stats">
+                <div class="coverage-stat">
+                    <span class="coverage-number">9</span>
+                    <span class="coverage-label">Provinces</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="coverage-number">1,000+</span>
+                    <span class="coverage-label">Cities, Towns & Villages</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="coverage-number">10,000+</span>
+                    <span class="coverage-label">Business Centers</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="coverage-number">100%</span>
+                    <span class="coverage-label">SA Coverage</span>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="town-search" placeholder="Search for your city, town or village...">
+            </div>
+            
+            <div class="province-accordion" id="province-accordion">
+                <!-- Gauteng Province -->
+                <div class="province-card active">
+                    <div class="province-header">
+                        <h3>Gauteng <span class="town-count">150+ locations</span></h3>
+                        <span class="province-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="province-content">
+                        <p>Economic hub of South Africa with the highest concentration of corporate headquarters and job opportunities.</p>
+                        <div class="towns-grid">
+                            <div class="town-item">
+                                <i class="fas fa-city town-icon"></i>
+                                <span>Johannesburg <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-city town-icon"></i>
+                                <span>Pretoria <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Sandton <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Randburg <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Roodepoort <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Centurion <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Midrand <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Kempton Park <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Alberton <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Boksburg <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Benoni <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Springs <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Germiston <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Vereeniging <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Vanderbijlpark <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Soweto <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Alexandra <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Brakpan <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Krugersdorp <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Carletonville <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Westonaria <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Heidelberg <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Nigel <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Bronkhorstspruit <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Cullinan <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Mamelodi <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Atteridgeville <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Soshanguve <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Ga-Rankuwa <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Hammanskraal <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Winterveld <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Bronberg <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Rayton <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Kameeldrift <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Refilwe <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Zithobeni <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Ekangala <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>KwaMhlanga <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Tembisa <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Katlehong <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Daveyton <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Wattville <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Tsakane <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Duduza <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>KwaThema <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <!-- Additional Gauteng towns would continue here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Western Cape Province -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <h3>Western Cape <span class="town-count">120+ locations</span></h3>
+                        <span class="province-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="province-content">
+                        <p>Tourism and agricultural hub with growing tech industry and diverse business opportunities.</p>
+                        <div class="towns-grid">
+                            <div class="town-item">
+                                <i class="fas fa-city town-icon"></i>
+                                <span>Cape Town <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Stellenbosch <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Paarl <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Wellington <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>George <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Mossel Bay <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Worcester <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Malmesbury <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Bellville <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Parow <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Somerset West <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Constantia <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Khayelitsha <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Gugulethu <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Mitchells Plain <span class="business-size large-business">Large</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Langa <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Athlone <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Claremont <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Rondebosch <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Newlands <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Observatory <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Sea Point <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Hout Bay <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Simon's Town <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Fish Hoek <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Noordhoek <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Kommetjie <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Scarborough <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Gordon's Bay <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Strand <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Grabouw <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Caledon <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Hermanus <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Gansbaai <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Bredasdorp <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Swellendam <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Riversdale <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Heidelberg <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Knysna <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Plettenberg Bay <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Oudtshoorn <span class="business-size medium-business">Medium</span></span>
+                            </div>
+                            <div class="town-item">
+                                <i class="fas fa-building town-icon"></i>
+                                <span>Beaufort West <span class="business-size small-business">Small</span></span>
+                            </div>
+                            <!-- Additional Western Cape towns would continue here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional provinces would continue here with similar structure -->
+                <!-- KwaZulu-Natal, Eastern Cape, Free State, Limpopo, Mpumalanga, North West, Northern Cape -->
+                
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="mb-0">We cover over 1,000 locations across South Africa - every city, town and village!</p>
+                <button class="btn btn-primary mt-2" id="contact-location">Contact Us About Your Area</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section with Payment Options -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>One-time payment for unlimited job applications across South Africa</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>Premium Job Application Package</h3>
+                        <div class="pricing-price">R499</div>
+                        <div class="pricing-period">One-time payment • No subscription</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check text-success"></i> Advanced AI Resume Enhancement</li>
+                        <li><i class="fas fa-check text-success"></i> Personalized Cover Letters</li>
+                        <li><i class="fas fa-check text-success"></i> Nationwide Job Search</li>
+                        <li><i class="fas fa-check text-success"></i> Automated Applications</li>
+                        <li><i class="fas fa-check text-success"></i> All South African Regions</li>
+                        <li><i class="fas fa-check text-success"></i> 30-Day Premium Support</li>
+                        <li><i class="fas fa-check text-success"></i> Application Tracking Dashboard</li>
+                        <li><i class="fas fa-check text-success"></i> Priority Job Matching</li>
+                    </ul>
+                    
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary btn-lg add-to-cart" data-product="Premium Job Application Package" data-price="499">
+                            Add to Cart - R499
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-options">
+                <div class="payment-option selected" data-method="payfast">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h4>PayFast</h4>
+                        <p>Credit Card, Debit Card, Instant EFT</p>
+                        <small>Secure & Instant</small>
+                    </div>
+                </div>
+                
+                <div class="payment-option" data-method="eft">
+                    <div class="payment-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div>
+                        <h4>Direct EFT</h4>
+                        <p>Bank Transfer</p>
+                        <small>Manual verification</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span>JobApp Automator</span>
+                    </div>
+                    <p>AI-powered job application automation for South Africa. Let us handle your job search while you focus on preparing for interviews.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#regions">All Locations</a></li>
+                        <li><a href="#ai-demo">AI Demo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@jobappautomator.co.za</li>
+                        <li><i class="fas fa-phone"></i> 012 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 JobApp Automator. All rights reserved. | <span id="current-year"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced JavaScript for the expanded regions section
+        
+        // Province accordion functionality
+        document.querySelectorAll('.province-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const provinceCard = header.parentElement;
+                provinceCard.classList.toggle('active');
+            });
+        });
+        
+        // Town search functionality
+        document.getElementById('town-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const townItems = document.querySelectorAll('.town-item');
+            
+            townItems.forEach(item => {
+                const townName = item.textContent.toLowerCase();
+                if (townName.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide provinces based on search results
+            document.querySelectorAll('.province-card').forEach(card => {
+                const provinceTowns = card.querySelectorAll('.town-item');
+                const visibleTowns = Array.from(provinceTowns).filter(town => 
+                    town.style.display !== 'none'
+                );
+                
+                if (visibleTowns.length > 0 || searchTerm === '') {
+                    card.style.display = 'block';
+                    // Auto-expand province if it has matching towns
+                    if (searchTerm !== '' && !card.classList.contains('active')) {
+                        card.classList.add('active');
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Contact location button
+        document.getElementById('contact-location').addEventListener('click', () => {
+            // In a real implementation, this would open a contact form
+            // For now, we'll show a toast notification
+            showToast('Please email support@jobappautomator.co.za with your specific location', 'success');
+        });
+        
+        // Payment option selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+            });
+        });
+        
+        // Function to show toast
+        function showToast(message, type = 'success') {
+            // Create toast element if it doesn't exist
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.className = 'toast';
+                toast.innerHTML = `
+                    <div class="toast-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="toast-content">
+                        <div class="toast-title">Success!</div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+            }
+            
+            // Set content
+            const toastMessage = toast.querySelector('.toast-message');
+            const toastTitle = toast.querySelector('.toast-title');
+            const toastIcon = toast.querySelector('.toast-icon i');
+            
+            toastMessage.textContent = message;
+            
+            // Set type
+            toast.className = 'toast';
+            toast.classList.add(type);
+            
+            // Set title and icon based on type
+            if (type === 'success') {
+                toastTitle.textContent = 'Success!';
+                toastIcon.className = 'fas fa-check-circle';
+            } else {
+                toastTitle.textContent = 'Error!';
+                toastIcon.className = 'fas fa-exclamation-circle';
+            }
+            
+            // Show toast
+            toast.classList.add('show');
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (document.querySelector('.nav-links').classList.contains('active')) {
+                        document.querySelector('.nav-links').classList.remove('active');
+                        document.querySelector('.nav-buttons').classList.remove('active');
+                        document.querySelector('.nav-links').style.display = 'none';
+                        document.querySelector('.nav-buttons').style.display = 'none';
+                        document.querySelector('.mobile-menu-btn').innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            navLinks.classList.toggle('active');
+            navButtons.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                navLinks.style.display = 'flex';
+                navButtons.style.display = 'flex';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const product = button.dataset.product;
+                const price = parseInt(button.dataset.price);
+                
+                showToast(`${product} added to cart!`, 'success');
+            });
+        });
+    </script>
+</body>
+</html>
